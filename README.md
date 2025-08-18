@@ -1,7 +1,7 @@
-2410030500 Sai Bhargav
-2410030525 Sai Sreevanth 
-2410030242 Sujith
-2410030046 Yashwanth
+- 2410030500 Sai Bhargav
+- 2410030525 Sai Sreevanth 
+- 2410030242 Sujith
+- 2410030046 Yashwanth
  
 🏋️‍♀️ Fit Planner
 
