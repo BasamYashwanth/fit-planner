@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: fit-planner
+    env: node
+    plan: free
+    buildCommand: pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: PORT
+        value: "3000"

@@ -1,8 +1,3 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -29,6 +24,11 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
+
+  /* Glass Morphism Auth CSS with Dynamic Light/Dark Theme */
+  /* --- Begin Auth CSS --- */
+  /* Complete Glass Morphism Auth CSS with Dynamic Light/Dark Theme */
+  :root {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -74,52 +74,215 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+/* Remove all Tailwind and custom rules for pure CSS compatibility */
+/* @import 'tailwindcss'; */
+/* @import 'tw-animate-css'; */
+/* @custom-variant dark (&:is(.dark *)); */
+
+/* Only keep variable definitions and custom glassmorphism styles */
+:root {
+  /* Light and dark theme variables, gradients, colors, etc. */
+  --bg-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --glass-bg: rgba(255,255,255,0.25);
+  --glass-bg-hover: rgba(255,255,255,0.35);
+  --glass-border: rgba(59,130,246,0.2);
+  --glass-border-focus: rgba(59,130,246,0.4);
+  --text-primary: #222;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --glass-shadow: 0 8px 32px rgba(59,130,246,0.15);
+  --glass-shadow-hover: 0 12px 40px rgba(59,130,246,0.25);
+  --primary: #3b82f6;
+  --accent: #8b5cf6;
+  --error: #ef4444;
+  --gradient-rainbow: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Glass Morphism Auth Classes */
+.auth-container {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: var(--bg-primary) !important;
+  transition: background var(--transition-speed) var(--transition-easing);
+}
+.auth-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  flex: 1;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.auth-box {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  padding: 2.5rem;
+  transition: all var(--transition-speed) var(--transition-easing);
+  position: relative;
+  width: 100%;
+  margin: auto 0;
+  height: auto !important;
+  overflow: visible !important;
+  min-height: fit-content;
+}
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.title-gradient {
+  background: var(--gradient-rainbow);
+  background-size: 300% 300%;
+  animation: rainbowShine 8s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1.2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+}
+.auth-form {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+}
+.required {
+  color: var(--error);
+  font-weight: bold;
+}
+.input-wrapper {
+  position: relative;
+}
+.animated-input {
+  width: 100%;
+  padding: 1.2rem 3.5rem 1.2rem 1.2rem;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all var(--transition-speed) var(--transition-easing);
+  color: var(--text-primary);
+  box-shadow: var(--glass-shadow);
+}
+.animated-input:focus {
+  background: var(--glass-bg-hover);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), var(--glass-shadow);
+  outline: none;
+}
+.animated-input::placeholder {
+  color: var(--text-muted);
+  transition: opacity var(--transition-speed) ease;
+}
+.animated-input:focus::placeholder {
+  opacity: 0.7;
+}
+.error-input {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15), var(--glass-shadow);
+}
+.input-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all var(--transition-speed) ease;
+}
+.input-wrapper:hover .input-icon,
+.animated-input:focus + .input-icon {
+  color: var(--primary);
+  transform: translateY(-50%) scale(1.1);
+}
+.auth-button {
+  width: 100%;
+  padding: 1.3rem;
+  border-radius: 12px;
+  background: var(--gradient-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-speed) var(--transition-easing);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.auth-button:hover {
+  background: var(--gradient-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.auth-button:active {
+  transform: translateY(0);
+}
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.general-error {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-radius: 12px;
+  padding: 1rem;
+}
+@keyframes rainbowShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

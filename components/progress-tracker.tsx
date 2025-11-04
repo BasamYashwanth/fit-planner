@@ -1,7 +1,37 @@
+"use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { TrendingUp, Calendar, Award, Target } from "lucide-react"
+import { TrendingUp, Calendar, Award, Target, Flame } from "lucide-react"
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  Legend
+} from 'recharts'
+
+const weeklyCaloriesData = [
+  { day: 'Mon', calories: 450 },
+  { day: 'Tue', calories: 520 },
+  { day: 'Wed', calories: 380 },
+  { day: 'Thu', calories: 600 },
+  { day: 'Fri', calories: 450 },
+  { day: 'Sat', calories: 400 },
+  { day: 'Sun', calories: 300 }
+];
+
+const monthlyProgressData = [
+  { week: 'Week 1', workouts: 4, caloriesBurned: 2300 },
+  { week: 'Week 2', workouts: 5, caloriesBurned: 2800 },
+  { week: 'Week 3', workouts: 4, caloriesBurned: 2500 },
+  { week: 'Week 4', workouts: 6, caloriesBurned: 3200 }
+];
 
 const progressStats = [
   {
@@ -11,10 +41,10 @@ const progressStats = [
     icon: Target,
   },
   {
-    label: "Strength Progress",
-    value: 85,
-    current: "+15% this month",
-    icon: TrendingUp,
+    label: "Calories Burned",
+    value: 82,
+    current: "2,800 / 3,400 kcal",
+    icon: Flame,
   },
   {
     label: "Consistency",
@@ -63,22 +93,67 @@ export function ProgressTracker() {
               ))}
             </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5" />
-                  Weekly Performance
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-64 flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">📈</div>
-                    <p>Performance chart would go here</p>
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Flame className="h-5 w-5" />
+                    Weekly Calories Burned
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-[200px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={weeklyCaloriesData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="calories" fill="#2563eb" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5" />
+                    Monthly Progress
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-[200px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={monthlyProgressData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="week" />
+                        <YAxis yAxisId="left" orientation="left" />
+                        <YAxis yAxisId="right" orientation="right" />
+                        <Tooltip />
+                        <Legend />
+                        <Line 
+                          yAxisId="left"
+                          type="monotone" 
+                          dataKey="workouts" 
+                          stroke="#2563eb" 
+                          activeDot={{ r: 8 }}
+                          name="Workouts"
+                        />
+                        <Line 
+                          yAxisId="right"
+                          type="monotone" 
+                          dataKey="caloriesBurned" 
+                          stroke="#16a34a" 
+                          name="Calories Burned"
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           <div>

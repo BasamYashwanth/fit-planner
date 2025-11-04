@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Menu, User, Settings } from "lucide-react"
+import Link from "next/link"
 
 export function Header() {
   return (
@@ -22,8 +23,16 @@ export function Header() {
             <a href="#exercises" className="text-sm font-medium hover:text-primary transition-colors">
               Exercises
             </a>
-            <a href="#nutrition" className="text-sm font-medium hover:text-primary transition-colors">
-              Nutrition
+            <div className="flex items-center gap-3">
+              <Link href="/nutrition" className="text-sm font-medium hover:text-primary transition-colors">
+                Nutrition
+              </Link>
+              <Link href="/dashboard#ai-suggestions" className="text-xs text-slate-500 hover:text-primary transition-colors">
+                AI Suggestions
+              </Link>
+            </div>
+            <a href="/login" className="text-sm font-medium text-blue-600 hover:underline transition-colors">
+              Login
             </a>
           </nav>
         </div>
